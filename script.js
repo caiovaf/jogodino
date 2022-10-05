@@ -6,19 +6,19 @@ let cloud = document.querySelector("#cloud");
 let score = document.querySelector("#score");
 let gameOver = document.querySelector("#gameOver");
 
-//declaring variable for score
+//Placar
+
 let interval = null;
 let playerScore = 0;
 
 
-//function for score
 let scoreCounter = () => {
     playerScore++;
     score.innerHTML = `Score <b>${playerScore}</b>`;
 }
 
 
-//start Game
+//Inicio do Jogo
 window.addEventListener("keydown", (start) => {
     //    console.log(start);
     if (start.code == "Space") {
@@ -27,14 +27,13 @@ window.addEventListener("keydown", (start) => {
         road.firstElementChild.style.animation = "roadAnimate 1.5s linear infinite";
         cloud.firstElementChild.style.animation = "cloudAnimate 50s linear infinite";
 
-        //score
         let playerScore = 0;
         interval = setInterval(scoreCounter, 200);
     }
 });
 
 
-//jump Your Character
+//Pular
 window.addEventListener("keydown", (e) => {
     //    console.log(e);
 
@@ -42,14 +41,13 @@ window.addEventListener("keydown", (e) => {
         if (dino.classList != "dinoActive") {
             dino.classList.add("dinoActive");
 
-            //                remove class after 0.5 seconds
             setTimeout(() => {
                 dino.classList.remove("dinoActive");
             }, 500);
         }
 });
 
-//'Game Over' if 'Character' hit The 'Block' 
+//Game Over
 let result = setInterval(() => {
     let dinoBottom = parseInt(getComputedStyle(dino).getPropertyValue("bottom"));
     //    console.log("dinoBottom" + dinoBottom);
